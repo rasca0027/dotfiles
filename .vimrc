@@ -26,10 +26,15 @@ filetype plugin indent on
 set background=dark
 colorscheme solarized8
 
-" paste toggle with visual cue
+" F2 to toggle paste mode with visual cue
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
+
+" F12 to toggle number
+:map <F12> :set number!<CR>
+"" for insert mode
+:imap <F12> <c-o>:set number!<CR>
 
 " " airline
 " set status line
