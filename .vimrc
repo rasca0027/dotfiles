@@ -23,12 +23,13 @@ syntax on
 filetype plugin indent on
 
 " solarized
-syntax enable
 set background=dark
-set t_Co=16
-let g:solarized_termcolors=256
-colorscheme solarized
+colorscheme solarized8
 
+" paste toggle with visual cue
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
 
 " " airline
 " set status line
@@ -55,3 +56,6 @@ let g:jedi#popup_on_dot = 0
 " copycat
 let g:copycat#auto_sync = 1
 let g:copycat#clip = 'vim'
+
+
+
