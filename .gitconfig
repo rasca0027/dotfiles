@@ -10,3 +10,9 @@
 	tree = log --pretty=format:\"%h %s\" --graph
 [core]
 	editor = vim
+[diff]
+        tool = vimdiff
+[merge]
+        tool = vimdiff
+[difftool]
+        prompt = false
