@@ -8,6 +8,7 @@
 	last = log -1 HEAD
 	unstage = reset HEAD --
 	tree = log --pretty=format:\"%h %s\" --graph
+	trees = log --all --decorate --oneline --graph
 [core]
 	editor = vim
 [diff]
