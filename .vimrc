@@ -9,8 +9,10 @@ set copyindent       " copy the previous indentation on autoindenting
 set nu
 set ruler
 set clipboard=unnamedplus
+" set clipboard=unnamed
 set guioptions+=a
-" set mouse=a
+set mouse=a
+set ttimeoutlen=100
 
 " encoding
 set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1
@@ -36,34 +38,12 @@ set showmode
 "" for insert mode
 :imap <F12> <c-o>:set number!<CR>
 
-" language specific settings
+" local language specific settings
 autocmd FileType html setlocal ts=2 sts=2 sw=2
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2
 
-" " airline
-" set status line
-set laststatus=2
-" enable powerline-fonts
-let g:airline_powerline_fonts = 1
-" enable tabline
-let g:airline#extensions#tabline#enabled = 1
-" set left separator
-let g:airline#extensions#tabline#left_sep = ' '
-" set left separator which are not editting
-let g:airline#extensions#tabline#left_alt_sep = '|'
-" show buffer number
-let g:airline#extensions#tabline#buffer_nr_show = 1
-" change theme
-let g:airline_theme='wombat'
-" not showing command bar
-let g:bufferline_echo = 0
-set noshowmode
+set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P
+set laststatus=2  " always display the status line
 
-" jedi
-let g:jedi#popup_on_dot = 0
-
-" copycat
-let g:copycat#auto_sync = 1
-let g:copycat#clip = 'vim'
-
-
-
+" flake8
+autocmd BufWritePost *.py call Flake8()
