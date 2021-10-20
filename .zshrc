@@ -91,5 +91,23 @@ source ~/.virtualenvrc
 # source '/home/rasca/google-cloud-sdk/completion.bash.inc'
 
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/zlib/lib"
+export CPPFLAGS="-I/usr/local/opt/zlib/include"
+export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
+export PATH="/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
+
+export PYENV_ROOT="$HOME/.pyenv/shims"
+export PATH="$PYENV_ROOT:$PATH"
+
+alias jira='open https://petalcard.atlassian.net/browse/$(git rev-parse --abbrev-ref HEAD | rev | cut -d"/" -f1 | rev)'
+
+bindkey "[D" backward-word
+bindkey "[C" forward-word
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+eval "$(pyenv init -)"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform

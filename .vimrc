@@ -13,6 +13,7 @@ set clipboard=unnamedplus
 set guioptions+=a
 set mouse=a
 set ttimeoutlen=100
+set laststatus=2
 
 " encoding
 set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1
@@ -24,9 +25,10 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
-" solarized
-set background=dark
-colorscheme solarized8
+" theme
+packadd! dracula
+syntax enable
+colorscheme dracula
 
 " F2 to toggle paste mode with visual cue
 nnoremap <F2> :set invpaste paste?<CR>
@@ -47,3 +49,13 @@ set laststatus=2  " always display the status line
 
 " flake8
 autocmd BufWritePost *.py call Flake8()
+
+" YCM
+nmap gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nmap gr :YcmCompleter GoToReferences<CR>
+
+" CWD to the root of git repo when opening file inside repo
+let g:gitroot=system("git rev-parse --show-toplevel")
+let g:is_gitrepo = v:shell_error == 0
+silent! cd `=gitroot
+let g:vim_isort_map = '<C-i>'
