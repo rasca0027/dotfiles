@@ -8,12 +8,13 @@ set autoindent       " auto indentation
 set copyindent       " copy the previous indentation on autoindenting
 set nu
 set ruler
-set clipboard=unnamedplus
-" set clipboard=unnamed
+" set clipboard=unnamedplus
+set clipboard=unnamed
 set guioptions+=a
 set mouse=a
 set ttimeoutlen=100
 set laststatus=2
+set backspace=indent,eol,start
 
 " encoding
 set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1
@@ -23,6 +24,7 @@ highlight CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred gu
 
 execute pathogen#infect()
 syntax on
+filetype plugin on
 filetype plugin indent on
 
 " theme
@@ -43,12 +45,14 @@ set showmode
 " local language specific settings
 autocmd FileType html setlocal ts=2 sts=2 sw=2
 autocmd FileType javascript setlocal ts=2 sts=2 sw=2
-
-set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P
-set laststatus=2  " always display the status line
+autocmd FileType css setlocal ts=2 sts=2 sw=2
+autocmd FileType markdown setlocal formatoptions+=a
 
 " flake8
 autocmd BufWritePost *.py call Flake8()
+
+" terraform format
+autocmd BufWritePost *.tf !terraform fmt
 
 " YCM
 nmap gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
