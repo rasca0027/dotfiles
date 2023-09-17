@@ -24,7 +24,6 @@ highlight CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred gu
 
 execute pathogen#infect()
 syntax on
-filetype plugin on
 filetype plugin indent on
 
 " theme
@@ -48,10 +47,11 @@ autocmd FileType javascript setlocal ts=2 sts=2 sw=2
 autocmd FileType css setlocal ts=2 sts=2 sw=2
 autocmd FileType markdown setlocal formatoptions+=a
 
+set laststatus=2  " always display the status line
+
 " flake8
 autocmd BufWritePost *.py call Flake8()
-
-" terraform format
+" terraform
 autocmd BufWritePost *.tf !terraform fmt
 
 " YCM
@@ -63,3 +63,6 @@ let g:gitroot=system("git rev-parse --show-toplevel")
 let g:is_gitrepo = v:shell_error == 0
 silent! cd `=gitroot
 let g:vim_isort_map = '<C-i>'
+
+" fzf
+set rtp+=/usr/local/opt/fzf
