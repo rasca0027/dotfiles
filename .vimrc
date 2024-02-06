@@ -22,7 +22,6 @@ set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1
 set cursorline
 highlight CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 
-execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
@@ -30,6 +29,9 @@ filetype plugin indent on
 packadd! dracula
 syntax enable
 colorscheme dracula
+
+" display marker
+packadd! vim-signature
 
 " F2 to toggle paste mode with visual cue
 nnoremap <F2> :set invpaste paste?<CR>
@@ -47,12 +49,12 @@ autocmd FileType javascript setlocal ts=2 sts=2 sw=2
 autocmd FileType css setlocal ts=2 sts=2 sw=2
 autocmd FileType markdown setlocal formatoptions+=a
 
-set laststatus=2  " always display the status line
-
 " flake8
 autocmd BufWritePost *.py call Flake8()
 " terraform
 autocmd BufWritePost *.tf !terraform fmt
+
+set laststatus=2
 
 " YCM
 nmap gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
