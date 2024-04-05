@@ -20,18 +20,23 @@ set backspace=indent,eol,start
 set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1
 
 set cursorline
-highlight CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+highlight CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 
 syntax on
 filetype plugin indent on
 
 " theme
-packadd! dracula
+packadd! seoul256.vim 
 syntax enable
-colorscheme dracula
+colorscheme seoul256
 
-" display marker
 packadd! vim-signature
+" https://github.com/junegunn/fzf.vim/issues/1102#issuecomment-717417278
+packadd! fzf
+packadd! fzf.vim
+packadd YouCompleteMe
+packadd vim-rails
+packadd vim-prisma
 
 " F2 to toggle paste mode with visual cue
 nnoremap <F2> :set invpaste paste?<CR>
@@ -46,15 +51,19 @@ set showmode
 " local language specific settings
 autocmd FileType html setlocal ts=2 sts=2 sw=2
 autocmd FileType javascript setlocal ts=2 sts=2 sw=2
+autocmd FileType typescript setlocal ts=2 sts=2 sw=2
 autocmd FileType css setlocal ts=2 sts=2 sw=2
+autocmd FileType json setlocal ts=2 sts=2 sw=2
 autocmd FileType markdown setlocal formatoptions+=a
+
+set laststatus=2  " always display the status line
 
 " flake8
 autocmd BufWritePost *.py call Flake8()
 " terraform
 autocmd BufWritePost *.tf !terraform fmt
-
-set laststatus=2
+" typescript
+autocmd BufWritePost *.ts !yarn run lint
 
 " YCM
 nmap gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -65,6 +74,3 @@ let g:gitroot=system("git rev-parse --show-toplevel")
 let g:is_gitrepo = v:shell_error == 0
 silent! cd `=gitroot
 let g:vim_isort_map = '<C-i>'
-
-" fzf
-set rtp+=/usr/local/opt/fzf
